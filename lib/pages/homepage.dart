@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mental_illness_app_ui/util/custom_list_tile.dart';
 import 'package:mental_illness_app_ui/util/emoticon_faces.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[800],
       bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home')
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+        BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About')
       ]),
       body: SafeArea(
           child: Column(
@@ -137,7 +143,61 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
               child: Container(
-            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            color: Colors.grey[200],
+            child: Center(
+              child: Column(
+                children: [
+                  //Exercise heading
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Exercises',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Icon(Icons.more_horiz)
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  //ListView of exercises
+                  Expanded(
+                    child: ListView(children: const [
+                      CustomListTile(
+                        icon: Icon(
+                          Icons.favorite,
+                          color: Colors.white,
+                        ),
+                        title: 'Speaking Skills',
+                        subtitle: '16 exercises',
+                        color: Colors.orange,
+                      ),
+                      CustomListTile(
+                        icon: Icon(
+                          Icons.person_2,
+                          color: Colors.white,
+                        ),
+                        title: 'Reading Skills',
+                        subtitle: '12 exercises',
+                        color: Colors.green,
+                      ),
+                      CustomListTile(
+                        icon: Icon(
+                          Icons.star,
+                          color: Colors.white,
+                        ),
+                        title: 'Writing Skills',
+                        subtitle: '20 exercises',
+                        color: Colors.pink,
+                      ),
+                    ]),
+                  )
+                ],
+              ),
+            ),
           ))
         ],
       )),
